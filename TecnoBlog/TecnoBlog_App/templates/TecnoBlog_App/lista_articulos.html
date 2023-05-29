@@ -1,0 +1,49 @@
+{% extends "TecnoBlog_App/base.html" %}
+
+{% block contenido %}
+<section>
+  <div>
+    <h1>Lista de articulos</h1>
+    <table class="table">
+      <td>
+        <a href="{% url 'crear_articulo' %}"> Agregar articulo </a>
+      </td>
+      <tbody>
+        <tr>
+          <th>Titulo</th>
+          <th>Descripcion</th>
+          <th>Autor</th>
+        </tr>
+      </tr>
+      {% for articulo in articulos %}
+      <tr>
+        <td>{{ articulo.titulo }}</td>
+        <td>{{ articulo.descripcion }}</td>
+        <td>{{ articulo.autor }}</td>
+        <td>
+          <a href="{% url 'detallar_articulos' %}">Ver más</a>
+        </td>
+        <td>
+          {% if user == articulo.creador %}
+          <form action="{% url 'editar_articulo' id=articulo.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="editar"/>
+          </form>
+          {% endif %}
+        </td>
+        <td>
+          {% if user == articulo.creador %}
+          <form action="{% url 'eliminar_articulo' id=articulo.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="eliminar"/>
+          </form>
+          {% endif %}         
+        </td>
+      </tr>
+      {% endfor %}
+        <br>
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock contenido %}
