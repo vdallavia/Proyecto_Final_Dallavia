@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
@@ -40,16 +40,15 @@ def listar_articulos(request):
     )
     return http_response
 
-def detallar_articulo(request):
-    contexto = { 
-        "articulos": Articulo.objects.all()
-    }
-    http_response=render(
-        request=request,
-        template_name="TecnoBlog_App/detalle_articulo.html",
-        context=contexto,
-    )
-    return http_response 
+def detallar_articulo(request, id):
+    try:
+        articulo = Articulo.objects.get(id=id)
+        contexto = {
+            "articulo": articulo
+        }
+        return render(request, "TecnoBlog_App/detalle_articulo.html", contexto)
+    except Articulo.DoesNotExist:
+        return redirect('listar_articulos')
 
 # Vista de Crear articulos
 @login_required
@@ -80,7 +79,7 @@ def crear_articulo(request):
             articulo.save()  # Lo guardan en la Base de datos
 
             # Redirecciono al usuario a la lista de articulos
-            url_exitosa = reverse('detallar_articulo')
+            url_exitosa = reverse('listar_articulos')
             #print("33333333333333333333333333333333")
             return redirect(url_exitosa)
         else:

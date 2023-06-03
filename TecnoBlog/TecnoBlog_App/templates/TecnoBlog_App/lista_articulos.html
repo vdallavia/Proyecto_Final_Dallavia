@@ -21,27 +21,7 @@
         <td>{{ articulo.titulo }}</td>
         <td>{{ articulo.descripcion }}</td>
         <td>
-          <a href="{% url 'detallar_articulo' %}">Leer más</a>
-        </td>
-        <td>
-          {% if user.is_authenticated %}
-          <form action="{% url 'editar_articulo' id=articulo.id %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-primary">
-              <span class="bi bi-pencil"></span>
-            </button>
-          </form>
-          {% endif %}
-        </td>
-        <td>
-          {% if user.is_authenticated %}
-          <form action="{% url 'eliminar_articulo' id=articulo.id %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-primary">
-              <span class="bi bi-trash"></span>
-            </button>
-          </form>
-          {% endif %}        
+          <a href="{% url 'detallar_articulo' id=articulo.id  %}">Leer más</a>
         </td>
       </tr>
       {% endfor %}

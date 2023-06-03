@@ -17,7 +17,6 @@
           <th>Imagen</th>
         </tr>
       </tr>
-      {% for articulo in articulos %}
       <tr>
         <td>{{ articulo.titulo }}</td>
         <td>{{ articulo.subtitulo }}</td>
@@ -26,25 +25,28 @@
         <td>{{ articulo.autor }}</td>
         <td>{{ articulo.fecha }}</td>
         <td><img src="{{ articulo.imagen.url }}" alt=""></td>
-      </td>  
+      </tr>  
         <td>
-          {% if user == articulo.creador %}
+          {% if user.is_authenticated %}
           <form action="{% url 'editar_articulo' id=articulo.id %}" method="post">
             {% csrf_token %}
-            <input type="submit" value="editar"/>
+            <button type="submit" class="btn btn-primary">
+              <span class="bi bi-pencil"></span>
+            </button>
           </form>
           {% endif %}
         </td>
         <td>
-          {% if user == articulo.creador %}
+          {% if user.is_authenticated %}
           <form action="{% url 'eliminar_articulo' id=articulo.id %}" method="post">
             {% csrf_token %}
-            <input type="submit" value="eliminar"/>
+            <button type="submit" class="btn btn-primary" onclick="return confirm('¿Estás seguro que deseas eliminar este artículo?')">
+              <span class="bi bi-trash float-left"></span>
+            </button>
           </form>
-          {% endif %}         
+          {% endif %}       
         </td>
       </tr>
-      {% endfor %}
         <br>
       </tbody>
     </table>
