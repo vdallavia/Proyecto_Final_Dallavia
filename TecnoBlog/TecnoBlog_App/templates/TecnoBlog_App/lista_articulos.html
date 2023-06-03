@@ -5,39 +5,43 @@
   <div>
     <h1>Lista de articulos</h1>
     <table class="table">
+      {% if user.is_authenticated %}
       <td>
         <a href="{% url 'crear_articulo' %}"> Agregar articulo </a>
       </td>
+      {% endif %}
       <tbody>
         <tr>
           <th>Titulo</th>
           <th>Descripcion</th>
-          <th>Autor</th>
         </tr>
       </tr>
       {% for articulo in articulos %}
       <tr>
         <td>{{ articulo.titulo }}</td>
         <td>{{ articulo.descripcion }}</td>
-        <td>{{ articulo.autor }}</td>
         <td>
-          <a href="{% url 'detallar_articulo' %}">Ver más</a>
+          <a href="{% url 'detallar_articulo' %}">Leer más</a>
         </td>
         <td>
-          {% if user == articulo.creador %}
+          {% if user.is_authenticated %}
           <form action="{% url 'editar_articulo' id=articulo.id %}" method="post">
             {% csrf_token %}
-            <input type="submit" value="editar"/>
+            <button type="submit" class="btn btn-primary">
+              <span class="bi bi-pencil"></span>
+            </button>
           </form>
           {% endif %}
         </td>
         <td>
-          {% if user == articulo.creador %}
+          {% if user.is_authenticated %}
           <form action="{% url 'eliminar_articulo' id=articulo.id %}" method="post">
             {% csrf_token %}
-            <input type="submit" value="eliminar"/>
+            <button type="submit" class="btn btn-primary">
+              <span class="bi bi-trash"></span>
+            </button>
           </form>
-          {% endif %}         
+          {% endif %}        
         </td>
       </tr>
       {% endfor %}

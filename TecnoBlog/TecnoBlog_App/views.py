@@ -42,7 +42,7 @@ def listar_articulos(request):
 
 def detallar_articulo(request):
     contexto = { 
-        "articulo": Articulo.objects.all()
+        "articulos": Articulo.objects.all()
     }
     http_response=render(
         request=request,
@@ -104,7 +104,7 @@ def eliminar_articulo(request, id):
     articulo_eliminar = Articulo.objects.get(id=id)
     if request.method == "POST":
         articulo_eliminar.delete()
-        url_exitosa = reverse('detallar_articulos')
+        url_exitosa = reverse('listar_articulos')
         return redirect(url_exitosa)
 
 
