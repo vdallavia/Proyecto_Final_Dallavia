@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 from TecnoBlog_App.forms import ArticuloFormulario
-from TecnoBlog_App.models import Articulo
+from TecnoBlog_App.models import Articulo, AcercaDeMi
 
 # Create your views here.
 
@@ -19,7 +19,8 @@ def inicio(request):
 
 # Vista de Acerca de Mi
 def acerca_de_mi(request):
-    contexto = { }
+    sobre_mi = AcercaDeMi.objects.first()  #para obtener el objeto 
+    contexto = {'sobre_mi': sobre_mi}
     http_response=render(
         request=request,
         template_name="TecnoBlog_App/acerca_de_mi.html",
@@ -39,13 +40,13 @@ def listar_articulos(request):
     )
     return http_response
 
-def detallar_articulos(request):
+def detallar_articulo(request):
     contexto = { 
-        "articulos": Articulo.objects.all()
+        "articulo": Articulo.objects.all()
     }
     http_response=render(
         request=request,
-        template_name="TecnoBlog_App/detalle_articulos.html",
+        template_name="TecnoBlog_App/detalle_articulo.html",
         context=contexto,
     )
     return http_response 
@@ -79,7 +80,7 @@ def crear_articulo(request):
             articulo.save()  # Lo guardan en la Base de datos
 
             # Redirecciono al usuario a la lista de articulos
-            url_exitosa = reverse('detallar_articulos')
+            url_exitosa = reverse('detallar_articulo')
             #print("33333333333333333333333333333333")
             return redirect(url_exitosa)
         else:

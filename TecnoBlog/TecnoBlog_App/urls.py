@@ -3,14 +3,14 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from TecnoBlog_App.views import listar_articulos, detallar_articulos, acerca_de_mi, inicio, crear_articulo, eliminar_articulo, editar_articulo
+from TecnoBlog_App.views import listar_articulos, detallar_articulo, acerca_de_mi, inicio, crear_articulo, eliminar_articulo, editar_articulo
 
 
 urlpatterns = [
     # URLS de archivos
     path("", inicio, name="inicio"),
     path("articulos/", listar_articulos, name="listar_articulos"),
-    path("detalle-articulo/", detallar_articulos, name="detallar_articulos"),
+    path("detalle-articulo/", detallar_articulo, name="detallar_articulo"),
     path("acerca-de-mi/", acerca_de_mi, name="acerca_de_mi"),
     path("crear-articulo/", crear_articulo, name="crear_articulo"),
     path("eliminar-articulo/<int:id>/", eliminar_articulo, name="eliminar_articulo"),

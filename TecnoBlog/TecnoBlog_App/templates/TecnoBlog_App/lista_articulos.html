@@ -21,7 +21,7 @@
         <td>{{ articulo.descripcion }}</td>
         <td>{{ articulo.autor }}</td>
         <td>
-          <a href="{% url 'detallar_articulos' %}">Ver más</a>
+          <a href="{% url 'detallar_articulo' %}">Ver más</a>
         </td>
         <td>
           {% if user == articulo.creador %}

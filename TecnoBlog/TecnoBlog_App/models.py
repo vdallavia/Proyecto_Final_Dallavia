@@ -14,3 +14,7 @@ class Articulo(models.Model):
 
     def __str__(self):
         return f"{self.titulo} | {self.autor} | {self.creador}"
+    
+class AcercaDeMi(models.Model):
+    nombre = models.CharField(max_length=100)
+    foto = models.ImageField(upload_to='sobre_mi/') 
