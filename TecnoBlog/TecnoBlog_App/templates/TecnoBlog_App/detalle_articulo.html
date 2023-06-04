@@ -1,55 +1,60 @@
 {% extends "TecnoBlog_App/base.html" %}
+{% load static %}
 
 {% block contenido %}
 <section>
   <div>
     <h1>Detalle Articulo</h1>
     <table class="table">
-
       <tbody>
         <tr>
           <th>Titulo</th>
-          <th>Subtitulo</th>
-          <th>Descripcion</th>
-          <th>Cuerpo</th>
-          <th>Autor</th>
-          <th>Fecha</th>
-          <th>Imagen</th>
+          <td>{{ articulo.titulo }}</td>
         </tr>
-      </tr>
-      <tr>
-        <td>{{ articulo.titulo }}</td>
-        <td>{{ articulo.subtitulo }}</td>
-        <td>{{ articulo.descripcion }}</td>
-        <td>{{ articulo.cuerpo }}</td>
-        <td>{{ articulo.autor }}</td>
-        <td>{{ articulo.fecha }}</td>
-        <td><img src="{{ articulo.imagen.url }}" alt=""></td>
-      </tr>  
-        <td>
-          {% if user.is_authenticated %}
-          <form action="{% url 'editar_articulo' id=articulo.id %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-primary">
-              <span class="bi bi-pencil"></span>
-            </button>
-          </form>
-          {% endif %}
-        </td>
-        <td>
-          {% if user.is_authenticated %}
-          <form action="{% url 'eliminar_articulo' id=articulo.id %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-primary" onclick="return confirm('¿Estás seguro que deseas eliminar este artículo?')">
-              <span class="bi bi-trash float-left"></span>
-            </button>
-          </form>
-          {% endif %}       
-        </td>
-      </tr>
-        <br>
+        <tr>
+          <th>Subtitulo</th>
+          <td>{{ articulo.subtitulo }}</td>
+        </tr>
+        <tr>
+          <th>Descripcion</th>
+          <td>{{ articulo.descripcion }}</td>
+        </tr>
+        <tr>
+          <th>Cuerpo</th>
+          <td>{{ articulo.cuerpo }}</td>
+        </tr>
+        <tr>
+          <th>Autor</th>
+          <td>{{ articulo.autor }}</td>
+        </tr>
+        <tr>
+          <th>Fecha</th>
+          <td>{{ articulo.fecha }}</td>
+        </tr>
+        <tr>
+          <th>Imagen</th>
+          <td><img src="{{ articulo.imagen.url }}" alt=""></td>
+        </tr>
       </tbody>
     </table>
+
+    {% if user.is_authenticated %}
+    <div>
+      <form action="{% url 'editar_articulo' id=articulo.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">
+          <span class="bi bi-pencil"></span> Editar
+        </button>
+      </form>
+
+      <form action="{% url 'eliminar_articulo' id=articulo.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary" onclick="return confirm('¿Estás seguro que deseas eliminar este artículo?')">
+          <span class="bi bi-trash float-left"></span> Eliminar
+        </button>
+      </form>
+    </div>
+    {% endif %}
   </div>
 </section>
 {% endblock contenido %}

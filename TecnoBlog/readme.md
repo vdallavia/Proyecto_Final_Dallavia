@@ -19,6 +19,7 @@ Iniciar Sesión
 Cerrar Sesión
 Editar el perfil de usuario
 Agregar un avatar al usuario
+Modificar un avatar al usuario
 Visualizar artículos
 Publicar artículos
 Editar artículos
@@ -27,6 +28,10 @@ Eliminar artículos
 Nota: La opción de crear, editar y eliminar artículos solo le está permitido al autor de la publicación del contenido.
 
 El proyecto contiene dos aplicaciones: "TecnoBlog_App" en donde se establecen las funcionalidades específicas para navegar en el blog y "Perfiles" para todo lo referido a la seguridad de los usuarios que acceden al blog.
+
+SuperUser:
+usuario = romand
+contraseña = AmorEterno
 
 Tecnología Utilizada
 Front-End
