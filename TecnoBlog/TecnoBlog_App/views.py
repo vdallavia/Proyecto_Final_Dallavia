@@ -18,8 +18,8 @@ def inicio(request):
 
 # Vista de Acerca de Mi
 def acerca_de_mi(request):
-    sobre_mi = AcercaDeMi.objects.first()  #para obtener el objeto 
-    contexto = {'sobre_mi': sobre_mi}
+    contexto = {
+    }
     http_response=render(
         request=request,
         template_name="TecnoBlog_App/acerca_de_mi.html",
@@ -103,10 +103,11 @@ def editar_articulo(request, id):
             articulo_editar.autor = data["autor"]
             articulo_editar.fecha = data["fecha"]
             articulo_editar.imagen = data["imagen"]
+            articulo_editar.imagen = request.FILES["imagen"]
             articulo_editar.descripcion = data["descripcion"]
             articulo_editar.save()
 
-            url_exitosa = reverse('detalle-articulo', kwargs={'id': articulo_editar.id})
+            url_exitosa = reverse('detallar_articulo', kwargs={'id': articulo_editar.id})
             return redirect(url_exitosa)
     else: # GET
         inicial = {

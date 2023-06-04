@@ -1,10 +1,15 @@
 {% extends "TecnoBlog_App/base.html" %}
 
 {% block contenido %}
-<h3>Subir tu Avatar</h3>
-<form method="post" enctype="multipart/form-data">
- {% csrf_token %}
- {{ form.as_p }}
- <input type="submit" value="Subir imagen"/>
-</form>
+  <h3>Asigna tu Avatar</h3>
+  {% if form.instance.id %}
+    <p>Tu avatar actual:</p>
+    <img src="{{ form.instance.imagen.url }}" alt="Avatar" width="100">
+    <p>Si deseas cambiarlo, sube una nueva imagen:</p>
+  {% endif %}
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Subir imagen"/>
+  </form>
 {% endblock contenido %}

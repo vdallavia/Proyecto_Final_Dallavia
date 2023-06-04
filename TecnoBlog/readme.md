@@ -22,7 +22,7 @@ Agregar un avatar al usuario
 Modificar un avatar al usuario
 Visualizar artículos
 Publicar artículos
-Editar artículos
+Editar artículos (tener en cuenta que deben completarse todos los campos para modificar)
 Eliminar artículos
 
 Nota: La opción de crear, editar y eliminar artículos solo le está permitido al autor de la publicación del contenido.

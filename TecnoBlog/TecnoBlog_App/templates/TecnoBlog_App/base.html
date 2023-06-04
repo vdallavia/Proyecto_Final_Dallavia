@@ -59,9 +59,16 @@
             En este espacio exploraremos juntos los avances más emocionantes y relevantes de la tecnología. Nuestro principal objetivo es establecer una comunidad en la que podamos compartir conocimientos, descubrimientos y perspectivas sobre las últimas tendencias tecnológicas. Queremos mantenernos mutuamente actualizados, aprovechando la sabiduría colectiva de todos nuestros lectores.
             Acompáñanos en esta emocionante travesía y navega hacia la sección "Artículos" para descubrir el amplio abanico de información que te mantendrá al día en el fascinante mundo de la innovación y el progreso. 
             </p>
-        <img src="{{ user.avatar.imagen.url }}" />
+        <img src="{{ articulo.imagen.url }}" alt="">
         {% endblock contenido %}
     </section>
+
+    <!-- Botón "Volver" -->
+    {% if request.path != '/' and request.path != '/acerca-de-mi/' and request.path != '/articulos/' %}
+    <div class="volver">
+        <a href="{{ request.META.HTTP_REFERER }}">Volver</a>
+    </div>
+    {% endif %}
 
     <!-- Footer-->
     <footer class="footer bg-light">
