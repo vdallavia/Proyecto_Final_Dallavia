@@ -1,13 +1,11 @@
-from typing import Any, Optional
-from django.db import models
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
-from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import UpdateView
+from django.contrib.auth.decorators import login_required
 
 from Perfiles.forms import UserRegisterForm, UserUpdateForm, AvatarFormulario
 from Perfiles.models import Avatar
@@ -70,7 +68,7 @@ class MiPerfilUpdateView(LoginRequiredMixin, UpdateView):
         return self.request.user
     
 # Funcion AGREGAR AVATAR:
-
+@login_required
 def agregar_avatar(request):
     if request.method == "POST":
         formulario = AvatarFormulario(request.POST, request.FILES)

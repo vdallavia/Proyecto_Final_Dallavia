@@ -11367,3 +11367,9 @@ footer.footer {
   padding-bottom: 4rem;
 }
 
+.avatar-img {
+  width: 50px; /* Ancho deseado */
+  height: 50px; /* Alto deseado */
+  object-fit: cover; /* Ajustar imagen al tamaño sin deformarla */
+  border-radius: 50%; /* Redondear los bordes para que se vea como un círculo */
+}
