@@ -70,6 +70,7 @@ class MiPerfilUpdateView(LoginRequiredMixin, UpdateView):
         return self.request.user
     
 # Funcion AGREGAR AVATAR:
+
 def agregar_avatar(request):
     if request.method == "POST":
         formulario = AvatarFormulario(request.POST, request.FILES)

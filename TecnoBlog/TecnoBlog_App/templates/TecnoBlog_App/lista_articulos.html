@@ -3,31 +3,33 @@
 {% block contenido %}
 <section>
   <div>
-    <h1>Lista de articulos</h1>
-    <table class="table">
-      {% if user.is_authenticated %}
-      <td>
-        <a href="{% url 'crear_articulo' %}"> Agregar articulo </a>
-      </td>
-      {% endif %}
-      <tbody>
-        <tr>
-          <th>Titulo</th>
-          <th>Descripcion</th>
-        </tr>
-      </tr>
-      {% for articulo in articulos %}
-      <tr>
-        <td>{{ articulo.titulo }}</td>
-        <td>{{ articulo.descripcion }}</td>
-        <td>
-          <a href="{% url 'detallar_articulo' id=articulo.id  %}">Leer más</a>
-        </td>
-      </tr>
-      {% endfor %}
-        <br>
-      </tbody>
-    </table>
+    <h1>Lista de artículos</h1>
+    {% if articulos|length == 0 %}
+      <p>No hay entradas aún</p>
+    {% else %}
+      <table class="table">
+        {% if user.is_authenticated %}
+          <td>
+            <a href="{% url 'crear_articulo' %}">Agregar artículo</a>
+          </td>
+        {% endif %}
+        <tbody>
+          <tr>
+            <th>Título</th>
+            <th>Descripción</th>
+          </tr>
+          {% for articulo in articulos %}
+            <tr>
+              <td>{{ articulo.titulo }}</td>
+              <td>{{ articulo.descripcion }}</td>
+              <td>
+                <a href="{% url 'detallar_articulo' id=articulo.id %}">Leer más</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
   </div>
 </section>
 {% endblock contenido %}
