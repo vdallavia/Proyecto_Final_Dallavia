@@ -2,9 +2,17 @@
 
 {% block contenido %}
   <h3>Asigna tu Avatar</h3>
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Cargar Avatar</button>
-</form>
+  {% if user.avatar %}
+    <p>Tu avatar actual:</p>
+    <div class="avatar-container">
+      <img src="{{ user.avatar.imagen.url }}" alt="" class="avatar-img">
+      <a href="{% url 'editar_avatar' %}" class="btn btn-primary">Editar avatar</a>
+    </div>
+  {% else %}
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Cargar Avatar</button>
+    </form>
+  {% endif %}
 {% endblock contenido %}

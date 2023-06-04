@@ -20,7 +20,7 @@ from django.contrib import admin
 from django.urls import path
 
 from TecnoBlog_App.views import listar_articulos, detallar_articulo, acerca_de_mi, inicio, crear_articulo, eliminar_articulo, editar_articulo
-from Perfiles.views import registro, login_view, CustomLogoutView, MiPerfilUpdateView, agregar_avatar
+from Perfiles.views import registro, login_view, CustomLogoutView, MiPerfilUpdateView, agregar_avatar, editar_avatar
 
 urlpatterns = [
      path('admin/', admin.site.urls),
@@ -36,6 +36,7 @@ urlpatterns = [
      path("logout/", CustomLogoutView.as_view(), name="logout"),
      path("editar-mi-perfil/", MiPerfilUpdateView.as_view(), name="editar_perfil"),
      path("agregar-avatar/", agregar_avatar, name="agregar_avatar"),
+     path("editar-avatar/", editar_avatar, name="editar_avatar"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -88,21 +88,21 @@ def agregar_avatar(request):
         context={'form': formulario},
     )
 # EDITAR AVATAR
+@login_required
 def editar_avatar(request):
-    avatar = Avatar.objects.get(user=request.user)  # Obtén el avatar del usuario actual
-
+    avatar_editar = Avatar.objects.get(user=request.user)
     if request.method == "POST":
-        formulario = AvatarFormulario(request.POST, request.FILES, instance=avatar)
+        formulario = AvatarFormulario(request.POST, request.FILES, instance=avatar_editar)
 
         if formulario.is_valid():
             formulario.save()
             url_exitosa = reverse('inicio')
             return redirect(url_exitosa)
     else:
-        formulario = AvatarFormulario(instance=avatar)
+        formulario = AvatarFormulario(instance=avatar_editar)
 
     return render(
         request=request,
-        template_name="Perfiles/formulario_avatar.html",
+        template_name="Perfiles/editar_avatar.html",
         context={'form': formulario},
     )

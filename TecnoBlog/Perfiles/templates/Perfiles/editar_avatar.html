@@ -1,0 +1,10 @@
+{% extends "TecnoBlog_App/base.html" %}
+
+{% block contenido %}
+  <h3>Modifica tu Avatar</h3>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Cargar Avatar</button>
+  </form>
+  {% endblock contenido %}
