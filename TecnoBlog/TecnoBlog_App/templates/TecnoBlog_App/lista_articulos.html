@@ -4,9 +4,6 @@
 <section>
   <div>
     <h1>Lista de artículos</h1>
-    {% if articulos|length == 0 %}
-      <p>No hay entradas aún</p>
-    {% else %}
       <table class="table">
         {% if user.is_authenticated %}
           <td>
@@ -15,10 +12,15 @@
         {% endif %}
         <tbody>
           <tr>
+            {% if articulos|length == 0 %}
+            <p>No hay entradas aún</p>
+            {% endif %}
+          </tr>
+          {% for articulo in articulos %}
+          <tr>
             <th>Título</th>
             <th>Descripción</th>
           </tr>
-          {% for articulo in articulos %}
             <tr>
               <td>{{ articulo.titulo }}</td>
               <td>{{ articulo.descripcion }}</td>
@@ -29,7 +31,6 @@
           {% endfor %}
         </tbody>
       </table>
-    {% endif %}
   </div>
 </section>
 {% endblock contenido %}

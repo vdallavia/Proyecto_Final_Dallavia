@@ -64,13 +64,6 @@
         {% endblock contenido %}
     </section>
 
-    <!-- "Volver" Button -->
-    {% if request.path != '/' and request.path != '/acerca-de-mi/' and request.path != '/articulos/' %}
-    <div class="volver">
-        <a href="{{ request.META.HTTP_REFERER }}">Volver</a>
-    </div>
-    {% endif %}
-
     <!-- Footer -->
     <footer class="footer bg-light">
         <div class="container">
