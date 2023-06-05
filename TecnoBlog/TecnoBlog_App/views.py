@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.urls import reverse
 
 from TecnoBlog_App.forms import ArticuloFormulario
-from TecnoBlog_App.models import Articulo, AcercaDeMi
+from TecnoBlog_App.models import Articulo
 
 # Create your views here.
 
