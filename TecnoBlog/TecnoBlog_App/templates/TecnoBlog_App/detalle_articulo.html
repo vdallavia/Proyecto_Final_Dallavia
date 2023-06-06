@@ -40,14 +40,16 @@
 
     {% if articulo.creador == request.user or request.user.is_superuser %}
     <div>
-      <form action="{% url 'editar_articulo' id=articulo.id %}" method="post">
+      <form action="{% url 'editar_articulo' id=articulo.id %}" method="post" style="display: inline-block;">
         {% csrf_token %}
         <button type="submit" class="btn btn-primary">
           <span class="bi bi-pencil"></span> Editar
         </button>
       </form>
 
-      <form action="{% url 'eliminar_articulo' id=articulo.id %}" method="post">
+      <span style="margin-left: 10px; margin-right: 10px;"></span>
+
+      <form action="{% url 'eliminar_articulo' id=articulo.id %}" method="post" style="display: inline-block;">
         {% csrf_token %}
         <button type="submit" class="btn btn-primary" onclick="return confirm('¿Estás seguro que deseas eliminar este artículo?')">
           <span class="bi bi-trash float-left"></span> Eliminar
@@ -59,7 +61,7 @@
 </section>
 
 <!-- "Volver Button -->
-<div>
+<div style="margin-top: 20px;">
     <a href="{% url 'listar_articulos' %}">Volver a Articulos</a>
 </div>
 {% endblock contenido %}

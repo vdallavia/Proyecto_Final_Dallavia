@@ -97,7 +97,7 @@ def eliminar_articulo(request, id):
 def editar_articulo(request, id):
     articulo_editar = Articulo.objects.get(id=id)
     if request.method == "POST":
-        formulario = ArticuloFormulario(request.POST)
+        formulario = ArticuloFormulario(request.POST, request.FILES)
         if formulario.is_valid():
             data = formulario.cleaned_data
             articulo_editar.titulo = data["titulo"]
@@ -105,7 +105,7 @@ def editar_articulo(request, id):
             articulo_editar.cuerpo = data["cuerpo"]
             articulo_editar.autor = data["autor"]
             articulo_editar.fecha = data["fecha"]
-            articulo_editar.imagen = request.FILES["imagen"]
+            articulo_editar.imagen = data["imagen"]
             articulo_editar.descripcion = data["descripcion"]
             articulo_editar.save()
 
