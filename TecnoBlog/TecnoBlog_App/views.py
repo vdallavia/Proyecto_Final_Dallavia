@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 from TecnoBlog_App.forms import ArticuloFormulario
 from TecnoBlog_App.models import Articulo
@@ -50,6 +51,7 @@ def detallar_articulo(request, id):
         return redirect('listar_articulos')
 
 # Vista de Crear articulos
+@login_required
 def crear_articulo(request):
     if request.method == "POST":
         formulario = ArticuloFormulario(request.POST)
@@ -60,7 +62,6 @@ def crear_articulo(request):
             cuerpo = data["cuerpo"]
             autor = data["autor"]
             fecha = data["fecha"]
-            imagen = data["imagen"]
             imagen = request.FILES['imagen']
             descripcion = data["descripcion"]
             creador = request.user
@@ -83,6 +84,7 @@ def crear_articulo(request):
 
 
 # Vista de eliminar articulo
+@login_required
 def eliminar_articulo(request, id):
     articulo_eliminar = Articulo.objects.get(id=id)
     if request.method == "POST":
@@ -91,6 +93,7 @@ def eliminar_articulo(request, id):
         return redirect(url_exitosa)
 
  # Vista de editar articulo
+@login_required
 def editar_articulo(request, id):
     articulo_editar = Articulo.objects.get(id=id)
     if request.method == "POST":
@@ -102,7 +105,6 @@ def editar_articulo(request, id):
             articulo_editar.cuerpo = data["cuerpo"]
             articulo_editar.autor = data["autor"]
             articulo_editar.fecha = data["fecha"]
-            articulo_editar.imagen = data["imagen"]
             articulo_editar.imagen = request.FILES["imagen"]
             articulo_editar.descripcion = data["descripcion"]
             articulo_editar.save()
